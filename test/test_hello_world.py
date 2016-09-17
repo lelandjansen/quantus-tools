@@ -1,5 +1,5 @@
 import unittest
-from src.lib.hello_world import hello
+from src.scripts.lib.hello_world import hello
 
 class TestHelloWorld(unittest.TestCase):
     def test_hello_world(self):
