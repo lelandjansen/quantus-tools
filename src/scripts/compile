@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Temporary solution
+# TODO: Make this better
+
+avr-gcc -g -Os -mmcu=atmega328p -c main.cc
+avr-gcc -g -mmcu=atmega328p -o main.elf main.o
+avr-objcopy -j .text -j .data -O ihex main.elf main.hex
