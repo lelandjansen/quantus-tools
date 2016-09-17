@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import sys, os, subprocess
+from lib.eprint import eprint
+
+for script in sys.argv[1:]:
+    try:
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        subprocess.run(os.path.join(script_dir, 'scripts', script))
+    except FileNotFoundError:
+        eprint('Error: Script \'' + script + '\' does not exist.')
+        break
