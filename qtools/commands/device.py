@@ -1,6 +1,7 @@
+import os
 from .base import Base
-from lib.config import Config
-from lib.fuse import Fuse
+from qtools.lib.config import Config
+from qtools.lib.fuse import Fuse
 
 class Device(Base):
 
@@ -42,7 +43,8 @@ class Device(Base):
 
     def set_fuses(self):
         model = Config.value('microcontroller.model', self.quantus_config_path)
-        fuse_config_path = 'resources/fuse.yml'
+        fuse_config_path = '{}/../resources/fuse.yml'.format(
+            os.path.dirname(os.path.realpath(__file__)))
         default_fuses = Config.value('{}.fuses'.format(model), fuse_config_path)
         device_fuses = Config.value('microcontroller.fuses', self.quantus_config_path)
 

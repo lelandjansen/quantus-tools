@@ -8,7 +8,7 @@ class Config:
         file_path = '{}/{}'.format(os.getcwd(), file_name)
         if not Path(file_path).is_file():
             raise FileNotFoundError('cannot find {} configuration file.'
-                .format(file_dir.split('/')[-1]))
+                .format(file_path.split('/')[-1]))
         return file_path
 
     def value(option, config_file):

@@ -22,7 +22,7 @@ Options:
     -f --set-fuses         Set microcontroller fuses using avrdude
 
 Examples:
-    qtools bootstrap
+    qtools device --set-fuses
 
 Help:
     For help using qtools, please open an issue on GitHub:
@@ -31,10 +31,9 @@ Help:
 # Good resource: https://stormpath.com/blog/building-simple-cli-interfaces-in-python
 
 from docopt import docopt
-VERSION = '0.0.1' # from . import __version__ as VERSION
-from inspect import getmembers, isclass
-from commands.base import Base
-from lib.config import Config
+from . import __version__ as VERSION
+from qtools.commands.base import Base
+from qtools.lib.config import Config
 import subprocess
 
 
@@ -45,6 +44,3 @@ def main():
         if k in commands and v:
             command = commands[k](options).run()
             subprocess.run(command)
-
-
-main() # TODO: remove
