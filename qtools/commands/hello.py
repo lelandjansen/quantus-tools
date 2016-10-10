@@ -2,5 +2,5 @@ from .base import Base
 
 class Hello(Base):
     def run(self):
-        hello = 'Hello, World!'
-        return ['echo'] + hello.split(' ')
+        greeting = 'Hello, World!'
+        return [['echo', greeting]]

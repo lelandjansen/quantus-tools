@@ -8,17 +8,17 @@ class Device(Base):
     def run(self):
         self.qtools_config_path = Config.locate_file('qtools.yml')
         self.quantus_config_path = Config.locate_file('quantus.yml')
-        base_command = [
-            'avrdude',
+        program = ['avrdude']
+        base_arguments = [
             '-p', Config.value('microcontroller.model', self.quantus_config_path),
             '-c', Config.value('programmer.model', self.qtools_config_path),
             '-P', Config.value('programmer.port', self.qtools_config_path)
         ]
 
-        return base_command + self.subprocess_command()
+        return [program + base_arguments + self.method_arguments()]
 
 
-    def subprocess_command(self):
+    def method_arguments(self):
         command = list()
         for k, v in self.options.items():
             if k.startswith('--') and v:

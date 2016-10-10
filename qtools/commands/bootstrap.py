@@ -8,4 +8,4 @@ class Bootstrap(Base):
         # check connection
         # set fuses
         # upload
-        print('Bootstrap')
+        pass

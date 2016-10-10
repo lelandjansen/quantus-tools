@@ -1,19 +1,22 @@
 from .base import Base
-import subprocess
+from qtools.lib.config import Config
 
 class Code(Base):
     def run(self):
-        # TODO: Make this better
+        # TODO: Make this better (use techniue from device)
         if self.options['--compile']:
-            self.avr_gcc_compile()
+            return self.avr_gcc_compile()
         elif self.options['--test']:
-            self.test()
+            return self.test()
 
     def avr_gcc_compile(self):
-        # TODO: Make this better
-        subprocess.run('avr-gcc -g -Os -mmcu=atmega328p -c main.cc'.split())
-        subprocess.run('avr-gcc -g -mmcu=atmega328p -o main.elf main.o'.split())
-        subprocess.run('avr-objcopy -j .text -j .data -O ihex main.elf main.hex'.split())
+        # TODO: Refactor (and remove duplication) for use with CMake
+        quantus_config_path = Config.locate_file('quantus.yml')
+        mmcu = Config.value('microcontroller.model', quantus_config_path)
+        compile1 = 'avr-gcc -g -Os -mmcu={} -c main.cc'.format(mmcu).split()
+        compile2 = 'avr-gcc -g -mmcu={} -o main.elf main.o'.format(mmcu).split()
+        compile3 = 'avr-objcopy -j .text -j .data -O ihex main.elf main.hex'.split()
+        return [compile1, compile2, compile3]
 
     def test(self):
         # TODO: Implement

@@ -39,8 +39,10 @@ import subprocess
 
 def main():
     options = docopt(__doc__, version = VERSION)
-    commands = dict((sc.__name__.lower(), sc) for sc in Base.__subclasses__())
+    available_commands = dict(
+        (sc.__name__.lower(), sc) for sc in Base.__subclasses__())
     for k, v in options.items():
-        if k in commands and v:
-            command = commands[k](options).run()
-            subprocess.run(command)
+        if k in available_commands and v:
+            commands = available_commands[k](options).run()
+            for command in commands:
+                subprocess.run(command, check = True)
