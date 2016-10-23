@@ -8,6 +8,9 @@ Usage:
     qtools device (-C | --check-connection)
     qtools device (-u | --upload)
     qtools device (-f | --set-fuses)
+    qtools docker (-u | --up)
+    qtools docker (-b | --build)
+    qtools docker (-d | --down)
     qtools hello
     qtools (-h | --help)
     qtools --version
@@ -20,6 +23,9 @@ Options:
     -C --check-connection  Check if microcontroller is connected using avrdude
     -u --upload            Upload hex file to microcontroller using avrdude
     -f --set-fuses         Set microcontroller fuses using avrdude
+    -u --up                Start docker
+    -b --build             Build docker container
+    -d --down              Stop docker
 
 Examples:
     qtools device --set-fuses
