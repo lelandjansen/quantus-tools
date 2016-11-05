@@ -13,7 +13,7 @@ class Code(Base):
         # TODO: Refactor (and remove duplication) for use with CMake
         quantus_config_path = Config.locate_file('quantus.yml')
         mmcu = Config.value('microcontroller.model', quantus_config_path)
-        compile1 = 'avr-gcc -g -Os -mmcu={} -c main.cc'.format(mmcu).split()
+        compile1 = 'avr-gcc -g -Os -mmcu={} -c main.cc -std=c++11'.format(mmcu).split()
         compile2 = 'avr-gcc -g -mmcu={} -o main.elf main.o'.format(mmcu).split()
         compile3 = 'avr-objcopy -j .text -j .data -O ihex main.elf main.hex'.split()
         return [compile1, compile2, compile3]
