@@ -9,8 +9,7 @@ class Code(Base):
         elif self.options['--test']:
             return self.test()
 
-    def avr_gcc_compile(self):
-        # TODO: Refactor (and remove duplication) for use with CMake
+    def avr_gcc_compile(self): # TODO: Refactor (and remove duplication) for use with CMake!!!
         quantus_config_path = Config.locate_file('quantus.yml')
         mmcu = Config.value('microcontroller.model', quantus_config_path)
         compile1 = 'avr-gcc -g -Os -mmcu={} -c main.cc'.format(mmcu).split()
