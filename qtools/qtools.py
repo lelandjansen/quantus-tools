@@ -22,6 +22,7 @@ Options:
     -f --set-fuses         Set microcontroller fuses using avrdude
 
 Examples:
+    qtools code --compile
     qtools device --set-fuses
 
 Help:
